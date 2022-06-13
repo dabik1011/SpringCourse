@@ -8,9 +8,7 @@ import ru.alishev.springcourse.models.Person;
 
 import java.util.List;
 
-/**
- * @author Neil Alishev
- */
+
 @Component
 public class PersonDAO {
 
@@ -31,13 +29,14 @@ public class PersonDAO {
     }
 
     public void save(Person person) {
-        jdbcTemplate.update("INSERT INTO Person VALUES(1, ?, ?, ?)", person.getName(), person.getAge(),
-                person.getEmail());
+        jdbcTemplate.update("INSERT INTO Person(name, birthday) VALUES(?, ?)",
+                person.getName(), person.getBirthday());
     }
 
     public void update(int id, Person updatedPerson) {
-        jdbcTemplate.update("UPDATE Person SET name=?, age=?, email=? WHERE id=?", updatedPerson.getName(),
-                updatedPerson.getAge(), updatedPerson.getEmail(), id);
+        jdbcTemplate.update("UPDATE Person SET name=?, birthday=?, WHERE id=?",
+                updatedPerson.getName(),
+                updatedPerson.getBirthday(), id);
     }
 
     public void delete(int id) {
