@@ -1,12 +1,10 @@
 package ru.alishev.springcourse.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 /**
@@ -37,6 +35,7 @@ public class Person {
     @Column(name = "date_of_birth")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy") // дд/мм/гггг
+    @NotNull(message = "Birthday should not be empty")
     private Date dateOfBirth;
 
     @Column(name = "created_at")
